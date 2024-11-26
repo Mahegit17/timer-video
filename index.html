@@ -103,48 +103,63 @@ body::before {
     </div>
 
     <script>
-        // Countdown logic
-        const countdownElement = document.getElementById('countdown');
-        const enterButton = document.getElementById('enterButton');
-        const videoPopup = document.getElementById('videoPopup');
-        const launchDate = new Date().getTime() + 14 * 24 * 60 * 60 * 1000;
+       // Countdown logic
+const countdownElement = document.getElementById('countdown');
+const enterButton = document.getElementById('enterButton');
+const videoPopup = document.getElementById('videoPopup');
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const timeLeft = launchDate - now;
+// Check if a launch date exists in localStorage
+let launchDate = localStorage.getItem('launchDate');
 
-            if (timeLeft <= 0) {
-                countdownElement.textContent = "We are live!";
-                enterButton.disabled = false;
-                clearInterval(interval);
-            } else {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                countdownElement.textContent = days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
-            }
-        }
-        const interval = setInterval(updateCountdown, 1000);
+if (!launchDate) {
+    // If no launch date exists, set a new one for 14 days from now
+    const now = new Date().getTime();
+    launchDate = now + 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
+    localStorage.setItem('launchDate', launchDate);
+} else {
+    // Convert the stored value back to a number
+    launchDate = parseInt(launchDate, 10);
+}
 
-        // Email subscription logic
-        function subscribe() {
-            const emailInput = document.getElementById('email');
-            if (emailInput.value) {
-                document.getElementById('notification').style.display = 'block';
-                emailInput.value = '';
-            } else {
-                alert("Please enter a valid email.");
-            }
-        }
+function updateCountdown() {
+    const now = new Date().getTime();
+    const timeLeft = launchDate - now;
 
-        // Video popup logic
-        function showVideo() {
-            videoPopup.style.display = 'block';
-        }
-        function closeVideo() {
-            videoPopup.style.display = 'none';
-        }
+    if (timeLeft <= 0) {
+        countdownElement.textContent = "We are live!";
+        enterButton.disabled = false;
+        clearInterval(interval);
+    } else {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        countdownElement.textContent =
+            days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+    }
+}
+const interval = setInterval(updateCountdown, 1000);
+
+// Email subscription logic
+function subscribe() {
+    const emailInput = document.getElementById('email');
+    if (emailInput.value) {
+        document.getElementById('notification').style.display = 'block';
+        emailInput.value = '';
+    } else {
+        alert("Please enter a valid email.");
+    }
+}
+
+// Video popup logic
+function showVideo() {
+    videoPopup.style.display = 'block';
+}
+function closeVideo() {
+    videoPopup.style.display = 'none';
+} 
+
+        
     </script>
 </body>
 </html>
