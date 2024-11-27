@@ -89,7 +89,7 @@ body::before {
             <button onclick="subscribe()">Notify Me!</button>
         </div>
 
-        <div id="notification" style="display: none;">You're all set! We'll notify you 24 hours before the unveiling.</div>
+        <div id="notification" style="display: none;">Follow Presidency_physicsassociation Instagram page for mode updates.</div>
 
         <button id="enterButton" disabled onclick="showVideo()">Enter</button>
 
@@ -101,6 +101,37 @@ body::before {
             <button onclick="closeVideo()">Close</button>
         </div>
     </div>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with your user ID
+    (function () {
+        emailjs.init("YOcNgETT5jdap9vvt7n"); // Replace YOUR_USER_ID with your EmailJS user ID
+    })();
+
+    function subscribe() {
+        const emailInput = document.getElementById('email');
+        if (emailInput.value) {
+            // Email data
+            const emailParams = {
+                to_email: emailInput.value,
+                message: "Thank you for registering! We will notify you one day before the unveiling."
+            };
+
+            // Send email
+            emailjs.send("service_mxcgkak", "template_wg5wr2q", emailParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById('notification').style.display = 'block';
+                    emailInput.value = '';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert("Error: Unable to send email.");
+                });
+        } else {
+            alert("Please enter a valid email.");
+        }
+    }
+</script>
 
     <script>
        // Countdown logic
