@@ -146,7 +146,7 @@ let launchDate = localStorage.getItem('launchDate');
 if (!launchDate) {
     // If no launch date exists, set a new one for 14 days from now
     const now = new Date().getTime();
-    launchDate = now + 14 * 24 * 60 * 50 * 1000; // 14 days in milliseconds
+    launchDate = now + 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
     localStorage.setItem('launchDate', launchDate);
 } else {
     // Convert the stored value back to a number
