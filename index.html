@@ -1,106 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presidency Physics Association</title>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: rgb(173, 201, 19);
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Adjust the 0.5 for more or less transparency */
-    z-index: -1; /* Ensure it stays behind all content */
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presidency Physics Association</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: rgb(173, 201, 19);
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
     
-        .container {
-            margin-top: 15%;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .email-input {
-            margin: 20px 0;
-        }
-        input[type="email"] {
-            padding: 10px;
-            font-size: 16px;
-            width: 300px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background: #ff0055;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:disabled {
-            background: gray;
-            cursor: not-allowed;
-        }
-        .countdown {
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
-        .video-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .video-popup video {
-            width: 100%;
-            max-width: 600px;
-        }
-    </style>
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    
+    .container {
+      margin-top: 15%;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    
+    .email-input {
+      margin: 20px 0;
+    }
+    
+    input[type="email"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #ff0055;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+    
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+    
+    .countdown-box {
+      background-color: #2f3640;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .countdown {
+      font-size: 36px;
+      color: #ffffff;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .video-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    
+    .video-popup video {
+      width: 100%;
+      max-width: 600px;
+    }
+  </style>
 </head>
 <body>
+  
     <div class="container">
         <h1>Presidency Physics Association</h1>
         <p>We will launch our event intro in:</p>
+        <div class="countdown-container">
+        <div class="countdown-box">
         <div class="countdown" id="countdown"></div>
-
+        </div>
+        </div>
         <div class="email-input">
-            <input type="email" id="email" placeholder="Your Email">
-            <button onclick="subscribe()">Notify Me!</button>
+        <input type="email" id="email" placeholder="Your Email">
+        <button onclick="subscribe()">Notify Me!</button>
         </div>
-
-        <div id="notification" style="display: none;">Follow Presidency_physicsassociation Instagram page for mode updates.</div>
-
+        <div id="notification" style="display: none;">Follow us on Instagram for more updates!</div>
         <button id="enterButton" disabled onclick="showVideo()">Enter</button>
-
+        <a href="(presidency_physicsassociation)" target="_blank">
+        <img src="instagram-logo.jpg" alt="Instagram Logo" style="width: 50px; height: 50px; margin-top: 10px;">
+        </a>
         <div class="video-popup" id="videoPopup">
-            <video controls>
-                <source src="video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <button onclick="closeVideo()">Close</button>
+        <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <button onclick="closeVideo()">Close</button>
         </div>
-    </div>
+        </div>
+  
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
@@ -135,41 +164,32 @@ body::before {
 </script>
 
     <script>
-       // Countdown logic
+      // Countdown logic
 const countdownElement = document.getElementById('countdown');
 const enterButton = document.getElementById('enterButton');
 const videoPopup = document.getElementById('videoPopup');
 
-// Check if a launch date exists in localStorage
-let launchDate = localStorage.getItem('launchDate');
-
-if (!launchDate) {
-    // If no launch date exists, set a new one for 14 days from now
-    const now = new Date().getTime();
-    launchDate = now + 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
-    localStorage.setItem('launchDate', launchDate);
-} else {
-    // Convert the stored value back to a number
-    launchDate = parseInt(launchDate, 10);
-}
+// Set a fixed launch date (December 15, 2024)
+const launchDate = new Date('2024-12-15T00:00:00').getTime();
 
 function updateCountdown() {
-    const now = new Date().getTime();
-    const timeLeft = launchDate - now;
+  const now = new Date().getTime();
+  const timeLeft = launchDate - now;
 
-    if (timeLeft <= 0) {
-        countdownElement.textContent = "We are live!";
-        enterButton.disabled = false;
-        clearInterval(interval);
-    } else {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        countdownElement.textContent =
-            days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
-    }
+  if (timeLeft <= 0) {
+    countdownElement.textContent = "We are live!";
+    enterButton.disabled = false;
+    clearInterval(interval);
+  } else {
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+    countdownElement.textContent = days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+  }
 }
+
 const interval = setInterval(updateCountdown, 1000);
 
 // Email subscription logic
